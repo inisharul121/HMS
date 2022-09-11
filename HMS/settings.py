@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #own
     'hotel',
+    #3rd party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
