@@ -20,4 +20,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('rooms/', views.room, name='rooms'),
     path('room/<int:pk>/', views.single_room, name='single_room'),
+    path("register/", views.register_request, name="register"),
+    path("login", views.login_request, name="login"),
+    path("logout", views.logout_request, name="logout"),
 ]
