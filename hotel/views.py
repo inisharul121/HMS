@@ -1,3 +1,4 @@
+from django.forms import inlineformset_factory
 from django.shortcuts import render,HttpResponse,redirect
 from .models import *
 from django.contrib.auth import login, authenticate
@@ -7,6 +8,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
     rooms=Room.objects.filter(booked=False) [:3]
@@ -61,3 +63,19 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.")
 	return redirect("home")
+
+def createBooking(request, pk):
+	BookingFormSet = inlineformset_factory(user, Booking, fields=('name', 'email','address_type', 'phone','endtime',), extra=10 )
+	guest = User.objects.get(id=pk)
+	formset = OrderFormSet(queryset=Order.objects.none(),instance=guest)
+	#form = OrderForm(initial={'customer':customer})
+	if request.method == 'POST':
+		#print('Printing POST:', request.POST)
+		#form = OrderForm(request.POST)
+		formset = BookingFormSet(request.POST, instance=guest)
+		if formset.is_valid():
+			formset.save()
+			return redirect('/')
+
+	context = {'form':formset}
+	return render(request, 'Booking', context)
