@@ -26,7 +26,7 @@ class Gallery (models.Model):
          return self.image.url
 
 class Room(models.Model):
-     name = models.CharField(max_length=200)
+     name = models.CharField(max_length=200, null=True)
      room_number = models.PositiveIntegerField()
      price = models.FloatField()
      short_desc=models.CharField(max_length=200, null=True)
@@ -45,12 +45,12 @@ class Room(models.Model):
 class BookingInformation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    Name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    address_type = models.CharField(max_length=200)
-    phone = models.CharField(max_length=14)
+    Name = models.CharField(max_length=100, null=True)
+    email = models.CharField(max_length=100, null=True)
+    address_type = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=14, null=True)
     starttime = models.DateTimeField(default=datetime.now())
-    endtime = models.DateTimeField()
+    endtime = models.DateTimeField(auto_now=False, auto_now_add=False,)
 
     def __str__(self):
         return self.user.username
@@ -58,8 +58,14 @@ class BookingInformation(models.Model):
 class Booking(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     room = models.ForeignKey(Room,on_delete=models.CASCADE)
-    booking_address = models.ForeignKey(BookingInformation, on_delete=models.CASCADE)
+    #booking_address = models.ForeignKey(BookingInformation, on_delete=models.CASCADE)
     complete=models.BooleanField(default=False)
+    Name = models.CharField(max_length=100, null=True)
+    email = models.CharField(max_length=100, null=True)
+    address_type = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=14, null=True)
+    starttime = models.DateTimeField(default=datetime.now())
+    endtime = models.DateTimeField(auto_now=False, auto_now_add=False,)
 
 
 
