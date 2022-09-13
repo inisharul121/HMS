@@ -140,20 +140,16 @@ button{
         <div class="shape"></div>
     </div>
     <form method="POST" action="">
-        <h3>Login Here</h3>
+        <h3>Book Now</h3>
         {% csrf_token %}
     {% if error.message %}
     <p> {{ error.message }}</p>
     {% endif %}
 
-        {{ login_form.as_p }}
+        {{ form.as_p }}
 
-        <button type="submit">Log In</button>
-    <p class="text-center">If you  haven't any account, <a href="{% url 'register' %}">Register</a> </p>
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div>
+        <button type="submit">Book</button>
+
     </form>
 </body>
 </html>
