@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+<a href="{% url 'home' %}"> <h1 style="text-align: center; color: darkseagreen">Home</h1> </a>
+<h1 style="text-align: center; color: #0dcaf0">AdminDashboard</h1>
+
+<div class="row">
+  <div class="column">
+    <table>
+    <tr >
+    <th style="text-align: center; color: green; vertical-align: middle;">Booked</th>
+    </tr>
+      <tr>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Room Number</th>
+      </tr>
+        {% for b in booked %}
+      <tr>
+
+
+        <td>{{ b.category.name }}</td>
+        <td>{{ b.price }}</td>
+        <td>{{ b.room_number }}</td>
+
+      </tr>
+        {% endfor %}
+    <th></th>
+    <th>Total</th>
+    <th>{{ bookedcount }}</th>
+
+    </table>
+  </div>
+  <div class="column">
+    <table>
+    <th style="text-align: center; color: red; ">Available</th>
+      <tr>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Room Number</th>
+      </tr>
+        {% for ub in unbooked %}
+          <tr>
+
+
+        <td>{{ ub.category.name}}</td>
+        <td>{{ ub.price }}</td>
+        <td>{{ ub.room_number }}</td>
+
+      </tr>
+        {% endfor %}
+    <th></th>
+    <th>Total</th>
+    <th>{{ unbookedcount }}</th>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

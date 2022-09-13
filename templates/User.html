@@ -3,41 +3,37 @@
 
     {% block content %}
 
-   <section id="roomdetails" class="roomdetails_wrapper mt-5">
-    <div class="container">
+        <!-- user UI -->
+       <section id="user" class="user_wrapper mt-5">
+        <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 section-title text-center mb-5">
-                <h3>ROOM DETAILS</h3>
-            </div>
-        </div>
+          <div class="col-sm-12 section-title text-center mb-5">
+              <h3>USER DASHBOARD</h3>
+          </div>
+      </div>
+      <div class="row m-0">
         <div class="row flex-lg-row flex-column-reverse">
-            <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center">
-                <img src="{{post.image.url}}" class="img-fluid" alt="roomdetails">
-            </div>
-            <div class="col-lg-6 text-center text-lg-start">
-                <h3>
-                    {{ post.name}}
-                </h3>
-                <h4 class="mt-5">
-                    {{ post.price }}
-                  </h4>
-                  <p>Lorem ipsum dolor</p>
-                  <h4 class="mt-5">
-                    BED TYPE
-                  </h4>
-                  <p>Lorem ipsum dolor</p>
-                  <h4 class="mt-5">
-                    AIR CONDITION 
-                  </h4>
-                  <p>AVAILABLE</p>
-                  
-                 <a href="{% url 'booking' %}" class="main-btn mt-4">BOOK NOW</a>
-            </div>
-        </div>
+          <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center">
+            <img src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png" class=" user_icon img-fluid">
+            <h4>Name:{{ user.username}}</h4>
+            <p>Email: {{ user.email }}</p>
+          </div>
+            {% for book in booked %}
+          <div class="col-lg-6 text-center text-lg-start">
+            <img src={% static "images/images/room/room1.webp" %} class="user_room img-fluid" alt="">
+            <h3>Room category: {{ book.room.category.name}}</h3>
+            <p>Room Number: {{book.room.room_number}}</p>
+            <p>Booking time: {{book.starttime}}</p>
+            <p>Booking End Time: {{book.endtime}}</p>
+          </div>
+            {% endfor %}
+          </div>
+      </div>
     </div>
-   </section>
+       </section>
 
-           <!-- Footer -->
+
+               <!-- Footer -->
 <footer class="main-footer text-center text-lg-start text-muted">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -165,7 +161,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script src={% static "js/main.js" %}></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 

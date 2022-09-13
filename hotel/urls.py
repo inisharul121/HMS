@@ -23,5 +23,8 @@ urlpatterns = [
     path("register/", views.register_request, name="register"),
     path("login/", views.login_request, name="login"),
     path("logout/", views.logout_request, name="logout"),
-    path("booking/<str:pk>/", views.createBooking, name="booking"),
+    #path("booking/<str:pk>/", views.createBooking, name="booking"),
+    path("booking/", views.CreateBooking.as_view(), name="booking"),
+    path('profile/', views.Profile, name='profile'),
+    path('admindashboard/', views.AdminDashboard, name='admindashboard'),
 ]
